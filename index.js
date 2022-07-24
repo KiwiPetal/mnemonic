@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import words from "./words.js";
 import { writeFileSync } from "fs";
 
-const ethprovider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/298fd80b74f1485ab6f1e56d78a4d057");
+const ethprovider = new ethers.providers.StaticJsonRpcProvider("https://mainnet.infura.io/v3/298fd80b74f1485ab6f1e56d78a4d057");
 let totalAddresses = 0;
 let addresses = {};
 let data = [];
@@ -66,6 +66,9 @@ async function checkwallet(mnemonic) {
 async function main() {
     for (let i = 1; i != 0;) {
         let mnemonic = generateMnemonic();
+        console.clear();
+        console.log("Looking for addresses =^._.^=\nTotal mnemonics generated: " + i + "\nTotal amount of addresses with balance: " + totalAddresses);
+        i++;
         await checkwallet(mnemonic);
     }
 }
